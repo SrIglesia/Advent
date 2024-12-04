@@ -1,0 +1,41 @@
+def main():
+
+#codigo estrella 1
+    lista=open("input1.txt","r")
+    contenido=lista.read()
+    contenido=contenido.split()
+    identificador=0
+    columna1=[]
+    columna2=[]
+    for c in contenido:
+        if identificador%2==0:
+            columna1.append(c)
+        else:
+            columna2.append(c)
+        identificador+=1
+
+    columna1=sorted(columna1)
+    columna2=sorted(columna2)
+    i=0
+    total=0
+    while i<len(columna1):
+        suma=abs(int(columna2[i])-int(columna1[i]))
+        total=total+suma
+        i+=1
+    print(total)
+
+#continuación estrella 2
+    similaridad_total=0
+    similaridad=0
+    for c in columna1:
+        apariciones=0
+        for c2 in columna2:
+            if c2==c:
+                apariciones+=1
+            
+        similaridad=int(c)*apariciones
+        similaridad_total=similaridad_total+similaridad
+        
+    print(similaridad_total)
+
+main()
