@@ -1,0 +1,44 @@
+def main():
+
+    #abrimos el input
+    input=open("input3.txt")
+    input=input.read()
+    lista=dividir_input(input)
+    revisar_ints(lista)
+    
+
+
+
+def dividir_input(input):
+    #voy a intentar ver si puedo dividir en diferentes archivos por mul(
+    lista=input.split("mul(")
+    #ahora quiero dividir por el primer paréntesis que encuentre
+    lista=str(lista).strip().split(")")
+    #con esto hemos aislado los elementos que tienen mul() en sólo los números. Creo que podría quitar la coma y buscar después los elementos que sólo fueran ints
+    lista=str(lista).split(",")
+    #pyhton al hacer str me introduce caracteres :( tengo que ir por los diferentes elementos y quitarles espacios y los símbolos
+    lista2=[]
+    for i in lista:
+        lista2.append(i.strip().strip("'").strip('"'))
+    return lista2
+    
+def revisar_ints(lista):
+    #aquí lo que quiero hacer es iterar para ver cuales son todos intergers. Puede que pueda sacar los contiguos y en ese caso, multiplicarlos.
+    i=0
+    resultado=0
+    while i<(len(lista)-1):
+        try:
+            resultado=resultado+int(lista[i])*int(lista[i+1])
+        except ValueError:
+            pass
+        i+=1
+    print(resultado)
+
+
+
+
+
+
+
+
+main()
