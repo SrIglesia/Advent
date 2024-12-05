@@ -1,0 +1,42 @@
+def main():
+    numeros=analizar_contenido("input2.txt")
+    resultado=comprobaciones_2(numeros)
+    print(resultado)
+
+def analizar_contenido(entrada):
+        lista=open(entrada)
+        contenido=lista.read().split("\n")
+        return contenido
+
+def comprobaciones_2(contenido):
+    total=0
+    for line in contenido:
+        line=line.split()
+        internal_count_1=0
+        internal_count_2=0
+        estado=True
+        try:
+            for i in range(len(line)-1):
+                i=int(i)
+                if int(line[i+1])>int(line[i]) and abs(int(line[i+1])-int(line[i]))<4 and abs(int(line[i+1])-int(line[i]))>0:
+                    internal_count_1+=1     
+                elif int(line[i+1])<int(line[i]) and abs(int(line[i+1])-int(line[i]))<4 and abs(int(line[i+1])-int(line[i]))>0:
+                    internal_count_2+=1
+                else:
+                    while estado:
+                        print(line[i])
+                        del(line[i])
+                        print(line[i])
+                        estado=False
+                        print(line)
+
+            if internal_count_1+1==len(line) or internal_count_2+1==len(line):
+                total+=1
+        except IndexError:
+            pass
+    return total
+
+               
+          
+
+main()
